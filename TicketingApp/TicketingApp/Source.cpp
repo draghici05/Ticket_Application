@@ -2,15 +2,24 @@
 using namespace std;
 
 class Location {
-public:
+private:
 	int MaxNoSeat;
 	int *NoRows;
 	const char* City;
-	
-	Location(int maxnoseat, int* norows, const char* city) {
+	int NoZones;
+public:
+
+	void setMaxNoSeat(int maxNoSeat) {
+		MaxNoSeat = maxNoSeat;
+	}
+	int getMaxNoSeat() {	
+		return MaxNoSeat;
+	}
+	Location(int maxnoseat, int* norows, const char* city, int nozones) {
 		MaxNoSeat = maxnoseat;
 		NoRows = norows;
 		City = city;
+		NoZones = nozones;
 		
 	}
 
@@ -22,14 +31,40 @@ public:
 };
 
 class Event {
-public:
+private:
 	const char* EventName;
-	const Location& location;
+	const Location& Location;
 	string Time;
 	const char* Date;
+public:
+
+	void setEventName(const char* eventName) {
+		EventName = eventName;
+	}
+	const char* getName() {
+		return EventName;
+	}
+	void setLocation(const Location& location) {
+		Location = location;
+	}
+	const getLocation() {
+		return Location;
+	}
+	void setTime(string time){
+		Time = time;
+	}
+	string getTime() {
+		return Time;
+	}
+	void setDate(const char* date) {
+		Date = date;
+	}
+	const char* getDate() {
+		return Date;
+	}
 
 
-	Event(const char* name, const char* date, string time, const Location& location) {
+	Event(const char* name, const char* date, string time, const Location location) {
 		EventName = name;
 		Time = time;
 		Date = date;
