@@ -1,59 +1,81 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-class Location {
+class LocationData {
 private:
 	int MaxNoSeat;
 	int *NoRows;
 	const char* City;
 	int NoZones;
 public:
-
+	
 	void setMaxNoSeat(int maxNoSeat) {
 		MaxNoSeat = maxNoSeat;
 	}
 	int getMaxNoSeat() {	
 		return MaxNoSeat;
 	}
-	Location(int maxnoseat, int* norows, const char* city, int nozones) {
+	void setNoRows(int* noRows) {
+		NoRows = noRows;
+	}
+	int* getNoRows() {
+		return NoRows;
+	}
+	void setCity(const char* city) {
+		City = city;
+	}
+	const char* getCity() {
+		return City;
+	}
+
+
+	LocationData(int maxnoseat, int* norows, const char* city, int nozones) {
 		MaxNoSeat = maxnoseat;
 		NoRows = norows;
 		City = city;
 		NoZones = nozones;
-		
 	}
-
 	void locationDetails() {
 		std::cout << "The event takes place in: " << City << std::endl;
 		std::cout << "The maximum ammount of seats in this location is: " << MaxNoSeat << std::endl;
 		std::cout << "The number of rows in this location is: " << NoRows << std::endl;
 	}
+	void locationValidation() {
+		if (NoZones <= 0) {
+			std::cout << "The location has no more available seats" << std::endl;
+		}
+		else {
+			std::cout << "The location has available seats" << std::endl;
+		}
+	}
+	
 };
 
 class Event {
 private:
-	const char* EventName;
-	const Location& Location;
-	string Time;
+	string EventName;
+	LocationData& Location;
+	int Time;
 	const char* Date;
 public:
 
-	void setEventName(const char* eventName) {
+	void setEventName(string eventName) {
 		EventName = eventName;
 	}
-	const char* getName() {
+	string getName() {
 		return EventName;
 	}
-	void setLocation(const Location& location) {
-		Location = location;
+	void setLocation(const LocationData& location) {
+		this-> Location;
 	}
-	const getLocation() {
+	const auto getLocation() {
 		return Location;
 	}
-	void setTime(string time){
+	void setTime(int time){
 		Time = time;
 	}
-	string getTime() {
+	int getTime() {
 		return Time;
 	}
 	void setDate(const char* date) {
@@ -64,14 +86,14 @@ public:
 	}
 
 
-	Event(const char* name, const char* date, string time, const Location location) {
+	Event(string name, const char* date, int time, LocationData location) :EventName(name), Location(location) {
 		EventName = name;
 		Time = time;
 		Date = date;
-		Location = location;
+		this->Location = location;
 	}
 
-	void eventPresentation() {
+	void eventDetails() {
 		std::cout << "Name of the event - " << EventName << std::endl;
 		std::cout << "The date on which the event takes place - " << Date << std::endl;
 		std::cout << "The time when the event starts - " << Time << std::endl;
@@ -80,17 +102,20 @@ public:
 };
 
 class Ticket {
-public:
+private:
 	string Type;
 	const char* EventName;
 	int SeatNumber;
 	double Price;
+	int ticketNumber;
 
-	Ticket(string type, const char* eventName, int seatNumber, double price) {
+public:
+	Ticket(string type, const char* eventName, int seatNumber, double price, int ticketnumber) {
 		Type = type;
 		Price = price;
 		EventName = eventName;
 		SeatNumber = seatNumber;
+		ticketNumber = ticketnumber;
 	}
 
 	void ticketDetails() {
@@ -99,4 +124,16 @@ public:
 		std::cout << "The type of bought ticket is: " << Type << std::endl;
 		std::cout << "The price of the ticket is: RON" << Price << std::endl;
 	}
+
+	void ticketValidation() {
+		if (ticketNumber <= 0) {
+			std::cout << "The ticket is invalid" << std::endl;
+		}
+		else {
+			std::cout << "The ticket is valid" << std::endl;
+		}
+	}
 };
+
+
+
