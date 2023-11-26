@@ -1,11 +1,12 @@
 #include "Zone.h"
 #include "iostream"
+using namespace std;
 
 Zone::Zone() : rows(1), seatsPerRow(1) {
 	rowSeats.resize(rows);
 }
 
-Zone::Zone(std::string name, unsigned int rows, unsigned int seatsPerRow) : name(name), rows(rows), seatsPerRow(seatsPerRow) {
+Zone::Zone(string name, unsigned int rows, unsigned int seatsPerRow) : name(name), rows(rows), seatsPerRow(seatsPerRow) {
 	rowSeats.resize(rows);
 }
 
@@ -26,7 +27,7 @@ void Zone::setName(std::string name) {
 }
 
 void Zone::setSeatsPerRow(unsigned int seatsPerRow) {
-	// Check if all the rows have enough free seats
+	
 	for (auto &row: rowSeats) {
 		if (row > seatsPerRow) {
 			std::cout << "Not enough seats in row " << &row - &rowSeats[0] << "!" << std::endl;
@@ -61,7 +62,7 @@ bool Zone::reserveSeat(unsigned int row) {
 	}
 }
 
-std::ostream &operator<<(std::ostream &os, const Zone &zone) {
+std::ostream &operator<<(ostream &os, const Zone &zone) {
 	os << "Zone: " << zone.name << std::endl;
 	os << "Rows: " << zone.rows << std::endl;
 	os << "Seats per row: " << zone.seatsPerRow << std::endl;
@@ -71,4 +72,12 @@ std::ostream &operator<<(std::ostream &os, const Zone &zone) {
 	}
 	os << std::endl;
 	return os;
+}
+
+std::istream& operator>>(std::istream& is, const Zone& zone)
+{
+	cout << "Enter zone name: ";
+	
+
+
 }

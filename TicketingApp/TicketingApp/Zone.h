@@ -28,4 +28,5 @@ public:
 	bool reserveSeat(unsigned int row);
 
 	friend std::ostream &operator<<(std::ostream &os, const Zone &zone);
+	friend std::istream& operator>>(std::istream &is, const Zone& zone);
 };
