@@ -1,5 +1,5 @@
 #include "Event.h"
-#include "Date.h"
+
 using namespace std;
 
 Event::Event(std::string name, Date date, unsigned int hour, unsigned int minute, std::string location)
@@ -53,8 +53,9 @@ void Event::setLocation(string location) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Event& event) {
-	os << "Event Name: " << event.name << "\nDate: " << event.date
-		<< "\nTime: " << event.hour << ":" << event.minute
-		<< "\nLocation: " << event.location;
+	os << "Event Name: " << event.name << std::endl;
+	os << "Date: " << event.date << std::endl;
+	os << "Time: " << event.hour << ":" << event.minute << std::endl;
+	os << "Location: " << event.location << std::endl;
 	return os;
 }

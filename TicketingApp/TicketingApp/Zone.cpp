@@ -74,10 +74,4 @@ std::ostream &operator<<(ostream &os, const Zone &zone) {
 	return os;
 }
 
-std::istream& operator>>(std::istream& is, const Zone& zone)
-{
-	cout << "Enter zone name: ";
-	
 
-
-}
