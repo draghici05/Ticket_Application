@@ -1,5 +1,5 @@
 #include "Date.h"
-
+using namespace std;
 
 Date::Date(int day, int month, int year) : day(day), month(month), year(year) {}
 
@@ -38,7 +38,7 @@ void Date::displayDate() {
 			  << std::endl;
 }
 
-std::string Date::getMonthName(int month) {
+    string Date::getMonthName(int month) {
 	switch (month) {
 		case 1:
 			return "January";

@@ -1,9 +1,10 @@
 #include "Date.h"
 #include "Location.h"
+using namespace std;
 
 class Event {
 private:
-	std::string name;
+	string name;
 	Date date;
 	unsigned int hour;
 	unsigned int minute;
@@ -11,19 +12,19 @@ private:
 
 public:
 	Event();
-	Event(std::string name, Date date, unsigned int hour, unsigned int minute, std::string location);
+	Event(string name, Date date, unsigned int hour, unsigned int minute, string location);
 
-	std::string getName();
+	string getName();
 	Date getDate();
 	unsigned int getHour();
 	unsigned int getMinute();
 	Location &getLocation();
 
-	void setName(std::string name);
+	void setName(string name);
 	void setDate(Date date);
 	void setHour(unsigned int hour);
 	void setMinute(unsigned int minute);
-	void setLocation(std::string location);
+	void setLocation(string location);
 
 	friend std::ostream &operator<<(std::ostream &os, const Event &event);
 	friend std::istream &operator>>(std::istream &is, Event &event);

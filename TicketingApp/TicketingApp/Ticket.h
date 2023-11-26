@@ -5,18 +5,18 @@ class Ticket {
 private:
 	static int nextId;
 	const int id;
-	std::string event;
+	string event;
 	int row;
 
 public:
 	Ticket();
-	Ticket(std::string event, int row);
+	Ticket(string event, int row);
 
 	int getId();
-	std::string getEvent();
+	string getEvent();
 	int getRow();
 
-	void setEvent(std::string event);
+	void setEvent(string event);
 	void setRow(int row);
 
 	void displayTicket();

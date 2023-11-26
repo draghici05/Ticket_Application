@@ -1,24 +1,25 @@
 #include "string"
 #include <vector>
+using namespace std;
 
 class Zone {
 private:
-	std::string name;
+	string name;
 	
 	const unsigned int rows;
 	unsigned int seatsPerRow;
 	
-	std::vector<unsigned int> rowSeats;
+	vector<unsigned int> rowSeats;
 
 public:
 	Zone();
-	Zone(std::string name, unsigned int rows, unsigned int seatsPerRow);
+	Zone(string name, unsigned int rows, unsigned int seatsPerRow);
 
-	std::string getName();
+	string getName();
 	unsigned int getRows();
 	unsigned int getSeatsPerRow();
 
-	void setName(std::string name);
+	void setName(string name);
 	void setSeatsPerRow(unsigned int seatsPerRow);
 
 

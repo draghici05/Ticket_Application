@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+using namespace std;
 
 class Date {
 private:
@@ -21,7 +22,7 @@ public:
 
 	void displayDate();
 
-	static std::string getMonthName(int month);
+	static string getMonthName(int month);
 	static bool isLeapYear(int year);
 	static int getDaysInMonth(int month, int year);
 
