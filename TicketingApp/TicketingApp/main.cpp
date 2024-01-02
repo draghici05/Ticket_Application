@@ -7,6 +7,7 @@
 #include "Ticket.h"
 
 using namespace std;
+Ticket ticket;
 
 void Menu() {
 	int choice;
@@ -85,7 +86,6 @@ void Menu() {
 }
 
 int main(int argc, char** argv) {
-	Ticket ticket;
 	Menu();
 	return 0;
 }
