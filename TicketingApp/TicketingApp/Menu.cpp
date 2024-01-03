@@ -30,13 +30,14 @@ void Menu() {
 		switch (choice) {
 		case 1:
 			int ticketNumber;
-			cout << "Enter the ticket number: \n";
+
+			event.chooseEvent();
 			cin >> ticketNumber;
 			cout << "Ticket has been bought. \n";
 			break;
 		case 2:
 			cout << "The details of your ticket: \n";
-			ticket.displayTicket;
+			ticket.displayTicket();
 			break;
 		case 3:
 			int modify;
