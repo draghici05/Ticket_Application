@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "Date.h"
 #include "Event.h"
@@ -41,6 +42,7 @@ void Menu() {
 			break;
 		case 3:
 			int modify;
+			
 			cout << "Select the details that need to be modified: \n";
 			cout << "1. Modify Event\n";
 			cout << "2. Modify Row\n";
@@ -87,6 +89,9 @@ void Menu() {
 }
 
 int main(int argc, char** argv) {
+	fstream fout;
+
+	fout.open("data.txt", ios::out);
 	Menu();
 	return 0;
 }
