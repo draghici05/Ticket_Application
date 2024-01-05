@@ -1,19 +1,20 @@
 #include "Date.h"
 #include "Ticket.h";
 #include <iostream>
+#include <fstream>	
 
 using namespace std;
 
 int Ticket::nextId = 1;
 
 Ticket::Ticket() : id(nextId++), event(" "), row(0), price(0.0), numberTicket(0) {
-	for (int i = 0; i < maxTickets; ++i) {
+	for (int i = 0; i < maxTickets; i++) {
 		ticketNumbers[i] = -1;
 	}
 }
 
 Ticket::Ticket(string event, int row) : id(nextId++), event(event), row(row), price(0.0), numberTicket(0) {
-	for (int i = 0; i < maxTickets; ++i) {
+	for (int i = 0; i < maxTickets; i++) {
 		ticketNumbers[i] = -1;
 	}
 }
@@ -50,13 +51,23 @@ void Ticket::buyTicket(int ticketNumber) {
 }
 
 void Ticket::displayTicket() {
-	 cout << "Ticket ID: " << id << std::endl << "Event: " << event << std::endl << "Row: " << row << std::endl << "Number of Tickets: " << numberTicket << endl << "Ticket Numbers: " << endl;
+	cout << "Ticket ID: " << id << std::endl << "Event: " << event << std::endl << "Row: " << row << std::endl << "Number of Tickets: " << numberTicket << endl;
 	for (int i = 0; i < numberTicket; i++) {
 		cout << ticketNumbers[i] << " ";
 	}
 }
+
+void Ticket::saveToFile(ostream& outFile) {
+	outFile.write(reinterpret_cast<char*>(this), sizeof(*this));
+}
+
+void Ticket::loadFromFile(istream& inFile) {
+	inFile.read(reinterpret_cast<char*>(this), sizeof(*this));
+}
+
+
 std::ostream& operator<<(std::ostream& out, Ticket& ticket) {
-	out << "Ticket ID: " << ticket.id << std::endl << "Event: " << ticket.event << std::endl << "Row: " << ticket.row << std::endl << "Number of Tickets: " << ticket.numberTicket << endl << "Ticket Numbers: " << endl;
+	out << "Ticket ID: " << ticket.id << std::endl << "Event: " << ticket.event << std::endl << "Row: " << ticket.row << std::endl << "Number of Tickets: " << ticket.numberTicket << endl;
 	for (int i = 0; i < ticket.numberTicket; ++i) {
 		out << ticket.ticketNumbers[i] << " ";
 	}
