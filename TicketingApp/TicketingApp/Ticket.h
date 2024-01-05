@@ -37,6 +37,9 @@ public:
 
     void displayTicket();
 
+    void saveToFile(ostream& outFile);
+    void loadFromFile(istream& inFile);
+
     friend std::ostream& operator<<(std::ostream& out, Ticket& ticket);
     friend std::istream& operator>>(std::istream& in, Ticket& ticket);
 };
