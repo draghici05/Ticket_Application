@@ -1,14 +1,29 @@
 #include <iostream>
-#include <fstream>
 #include <string>
 #include "Date.h"
 #include "Event.h"
 #include "Location.h"
 #include "Zone.h"
 #include "Ticket.h"
+#include <fstream>
+#include <vector>
 
 using namespace std;
+
 Ticket ticket;
+Event event;
+
+void saveToFile(vector<Ticket>& tickets, string& ticket_data) {
+	ofstream outFile(ticket_data, ios::binary);
+	if (!outFile.is_open()) {
+		cout << "Error" << endl;
+		return;
+	}
+	for (Ticket& t : tickets) {
+		t.saveToFile(outFile);
+	}
+	outFile.close();
+}
 
 void Menu() {
 	int choice;
@@ -30,9 +45,9 @@ void Menu() {
 		cin >> choice;
 		switch (choice) {
 		case 1:
-			int ticketNumber;
-
 			event.chooseEvent();
+
+			int ticketNumber;
 			cin >> ticketNumber;
 			cout << "Ticket has been bought. \n";
 			break;
@@ -42,15 +57,14 @@ void Menu() {
 			break;
 		case 3:
 			int modify;
-			
 			cout << "Select the details that need to be modified: \n";
 			cout << "1. Modify Event\n";
 			cout << "2. Modify Row\n";
 			cout << "3. Modify Date\n";
 			cout << "Choose an option: ";
 			cin >> modify;
-			
-			switch(modify) {
+
+			switch (modify) {
 			case 1:
 			{
 				string newEvent;
@@ -89,9 +103,14 @@ void Menu() {
 }
 
 int main(int argc, char** argv) {
-	fstream fout;
 
-	fout.open("data.txt", ios::out);
-	Menu();
+	vector<Ticket> tickets;
+	if (argc > 1) {
+		(argv[1]);
+	}
+	else {
+		Menu();
+	}
+
 	return 0;
 }
