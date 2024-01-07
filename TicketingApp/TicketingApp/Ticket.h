@@ -1,6 +1,8 @@
 #pragma once
-
 #include <iostream>
+#include "Date.h"
+#include "Event.h"
+
 using namespace std;
 
 class Ticket {
@@ -28,13 +30,14 @@ public:
     int getId();
     string getEvent();
     int getRow();
-    Date getTicketDate();
+    Date getTicketDate();   
 
     void setTicketDate(Date date);
     void setTicketNumber();
     void setEvent(string event);
     void setRow(int row);
 
+    void buyTicket(const Event& event, int ticketNumber);
     void displayTicket();
 
     void saveToFile(ostream& outFile);
