@@ -1,10 +1,11 @@
 #include "Date.h"
-#include "Ticket.h";
+#include "Ticket.h"
 #include <iostream>
-#include <fstream>	
+#include <fstream>
 
 using namespace std;
 
+Event event;
 int Ticket::nextId = 1;
 
 Ticket::Ticket() : id(nextId++), event(" "), row(0), price(0.0), numberTicket(0) {
@@ -63,6 +64,12 @@ void Ticket::saveToFile(ostream& outFile) {
 
 void Ticket::loadFromFile(istream& inFile) {
 	inFile.read(reinterpret_cast<char*>(this), sizeof(*this));
+}
+
+void Ticket::buyTicket(const Event& event, int ticketNumber) {
+	setEvent(event.getName());
+	setRow(ticketNumber);
+	setTicketDate(event.getDate());
 }
 
 
