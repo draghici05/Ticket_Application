@@ -1,12 +1,16 @@
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <vector>
+#include <cstdlib>
+
 #include "Date.h"
 #include "Event.h"
 #include "Location.h"
 #include "Zone.h"
 #include "Ticket.h"
-#include <fstream>
-#include <vector>
+#include "ProcessFile.h"
+
 
 using namespace std;
 
@@ -50,6 +54,13 @@ void Menu() {
 			int ticketNumber;
 			cin >> ticketNumber;
 			cout << "Ticket has been bought. \n";
+			if (!(cin >> ticketNumber)) {
+				cout << "Invalid input\n";
+				cin.clear();
+				cin.ignore();
+			}
+			ticket.buyTicket(event, ticketNumber);
+			cout << "The ticket has been bought.";
 			break;
 		case 2:
 			cout << "The details of your ticket: \n";
@@ -106,7 +117,7 @@ int main(int argc, char** argv) {
 
 	vector<Ticket> tickets;
 	if (argc > 1) {
-		(argv[1]);
+		ProcessFile(argv[1]);  //Idea from https://stackoverflow.com/questions/3024197/what-does-int-argc-char-argv-mean
 	}
 	else {
 		Menu();
