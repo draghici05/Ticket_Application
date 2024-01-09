@@ -37,6 +37,10 @@ void Ticket::setTicketDate(Date date) {
 	ticketDate = date;
 }
 
+void Ticket::setTicketNumber(int numberTicket) {
+	this->numberTicket = numberTicket;
+}
+
 void Ticket::setEvent(string event) {
 	this->event = event;
 }
@@ -46,11 +50,6 @@ void Ticket::setRow(int row) {
 }
 
 
-void Ticket::buyTicket(int ticketNumber) {
-	this->numberTicket = ticketNumber;
-	cout << "Ticket " << ticketNumber << " has been bought succesfully\n";
-}
-
 void Ticket::displayTicket() {
 	cout << "Ticket ID: " << id << std::endl << "Event: " << event << std::endl << "Row: " << row << std::endl << "Number of Tickets: " << numberTicket << endl;
 	for (int i = 0; i < numberTicket; i++) {
@@ -58,8 +57,10 @@ void Ticket::displayTicket() {
 	}
 }
 
-void Ticket::saveToFile(ostream& outFile) {
-	outFile.write(reinterpret_cast<char*>(this), sizeof(*this));
+void Ticket::saveToFile(ostream& outFile) const {
+	outFile << "Date: " << ticketDate << endl;
+	outFile << "Event: " << event << endl;
+	outFile << "Row: " << row << endl;
 }
 
 void Ticket::loadFromFile(istream& inFile) {
@@ -70,6 +71,10 @@ void Ticket::buyTicket(const Event& event, int ticketNumber) {
 	setEvent(event.getName());
 	setRow(ticketNumber);
 	setTicketDate(event.getDate());
+
+	cout << "TicketId: " << getId() << std::endl;
+	cout << "Event name: " << event.getName() << std::endl;
+	cout << "Event date: " << event.getDate() << std::endl;
 }
 
 
